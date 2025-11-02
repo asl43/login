@@ -54,18 +54,19 @@
   </div>
 
   <script>
-    const API_URL = "https://script.google.com/macros/s/AKfycbz5lu6g8egdVjkDtkiyyw1czsA3A4PzDC34ig6Mq5D_KqCUuFvhEYzgbrPe95A_woZX/exec"; // 🔁 coloque aqui o link do seu Apps Script
+    const API_URL = "https://script.google.com/macros/s/AKfycbz5lu6g8egdVjkDtkiyyw1czsA3A4PzDC34ig6Mq5D_KqCUuFvhEYzgbrPe95A_woZX/exec";
 
     async function fazerLogin() {
       const email = document.getElementById('email').value.trim();
       const senha = document.getElementById('senha').value.trim();
       const msg = document.getElementById('mensagem');
-      msg.textContent = "Verificando...";
+      msg.textContent = "Verificando…";
 
       try {
         const resp = await fetch(API_URL, {
           method: 'POST',
-          body: JSON.stringify({ email, senha })
+          body: JSON.stringify({ email, senha }),
+          headers: { "Content-Type": "application/json" }
         });
         const data = await resp.json();
 
